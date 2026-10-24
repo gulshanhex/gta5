@@ -59,3 +59,32 @@ npm run build
 # 4. Deploy to Cloudflare Workers (uses wrangler.jsonc, no D1 or R2 needed)
 npx wrangler deploy
 ```
+
+### Static-asset upload: what actually gets deployed
+
+`wrangler.jsonc` points `assets.directory` at `./dist` and `main` at
+`./dist/_worker.js/index.js`. Wrangler deliberately ignores almost nothing by
+default, so without an ignore list **every file in `./dist` — including the
+server-side Worker bundle — would be published as a public static asset.**
+
+`public/.assetsignore` (copied to `dist/.assetsignore` on every build) is a
+`.gitignore`-style list that keeps the upload limited to the real client files
+(`index.html`, `models/**`, `textures/**`). It excludes `_worker.js`,
+`_routes.json`, the ignore file itself, and any dev/secret leftovers, so the
+Worker script is never downloadable as a static file.
+
+Two repo-level files round this out:
+
+- **`.gitignore`** — keeps `node_modules/`, `.wrangler/`, `.dev.vars*`,
+  `.env*`, editor/OS junk and logs out of version control. `dist/` is
+  intentionally *not* ignored, so the prebuilt Worker can be deployed straight
+  from a fresh clone with no build step. Uncomment the `dist/` line if you
+  would rather build on every deploy.
+- **`.gitattributes`** — forces LF line endings, marks `.glb` / `.png` / `.jpg`
+  as binary, and collapses the generated `dist/**` output in diffs.
+
+To check exactly which files will be uploaded before deploying:
+
+```bash
+npx wrangler deploy --dry-run
+```
