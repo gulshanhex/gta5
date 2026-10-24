@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gta5-los-santos-web",
+  "main": "./dist/_worker.js/index.js",
+  "compatibility_date": "2026-10-20",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "GAME_TITLE": "GTA V: Los Santos Web Edition",
+    "STORAGE_MODE": "PUBLIC_STATIC_ASSETS_NO_D1_NO_R2"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "gta5-los-santos-cloudflare-astro",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GTA 5: Los Santos 3D Web Edition built with Astro and Three.js for Cloudflare Workers (Zero D1/R2, all 3D .glb assets in public/)",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.0",
+    "astro": "^5.16.0",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.170.0",
+    "typescript": "^5.7.2",
+    "wrangler": "^4.14.0"
+  }
+}
