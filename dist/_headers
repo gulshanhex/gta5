@@ -1,0 +1,7 @@
+/models/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/textures/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *

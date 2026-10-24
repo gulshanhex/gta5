@@ -1,0 +1,70 @@
+# ---------------------------------------------------------------------------
+# .assetsignore  —  Cloudflare Workers static-assets ignore list
+# ---------------------------------------------------------------------------
+# Lives at the ROOT of the static-assets directory.
+#   wrangler.jsonc -> assets.directory = "./dist"
+# Astro copies this file from ./public into ./dist on every build, so it is
+# always present in the directory Wrangler actually uploads.
+#
+# Format is identical to .gitignore. Wrangler will NOT upload anything that
+# matches a line here as a client-side static asset.
+#
+# Why this file exists
+# --------------------
+# Wrangler's design choice is to ignore almost NOTHING by default (only
+# `_redirects` and `_headers` are special-cased). Without this file, every
+# single file in ./dist is pushed to the edge as a public asset — including
+# the server-side Worker bundle (`dist/_worker.js/index.js`), which would then
+# be publicly downloadable. This file keeps the asset upload limited to the
+# real client-side files only: index.html, models/**, textures/**.
+# ---------------------------------------------------------------------------
+
+# --- Server-side Worker bundle + generated routing config (never serve) ---
+_worker.js
+_worker.js/**
+_routes.json
+
+# --- The ignore file itself ---
+.assetsignore
+
+# --- Wrangler / Cloudflare local state & secrets ---
+.wrangler/
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+wrangler.json
+wrangler.jsonc
+wrangler.toml
+
+# --- Dependencies & build tooling (never serve) ---
+node_modules/
+**/node_modules/
+.astro/
+.vite/
+*.tsbuildinfo
+*.map
+
+# --- Project source & repo config (never serve) ---
+src/
+public/
+astro.config.mjs
+astro.config.ts
+tsconfig.json
+package.json
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+README.md
+PRD_AND_ARCHITECTURE.md
+LICENSE
+.gitignore
+.gitattributes
+.git/
+.github/
+
+# --- Editor / OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+npm-debug.log*

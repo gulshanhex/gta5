@@ -1,0 +1,49 @@
+# Normalise line endings to LF in the repo, keep working tree as-is.
+* text=auto eol=lf
+
+# ---------------------------------------------------------------------------
+# Binary assets — never treated as text, never line-ending normalised
+# ---------------------------------------------------------------------------
+*.glb    binary
+*.gltf   binary
+*.bin    binary
+*.fbx    binary
+*.obj    binary
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.webp   binary
+*.ico    binary
+*.avif   binary
+*.bmp    binary
+*.tga    binary
+*.hdr    binary
+*.ktx2   binary
+*.woff   binary
+*.woff2  binary
+*.ttf    binary
+*.otf    binary
+*.mp3    binary
+*.ogg    binary
+*.wav    binary
+*.mp4    binary
+*.webm   binary
+*.zip    binary
+*.gz     binary
+
+# ---------------------------------------------------------------------------
+# Generated / minified output — collapse in diffs, mark as generated
+# ---------------------------------------------------------------------------
+dist/**             -diff linguist-generated=true
+package-lock.json   -diff linguist-generated=true
+pnpm-lock.yaml      -diff linguist-generated=true
+yarn.lock           -diff linguist-generated=true
+
+# Markdown & config
+*.md      text eol=lf
+*.json    text eol=lf
+*.jsonc   text eol=lf
+*.astro   text eol=lf
+*.ts      text eol=lf
+*.mjs     text eol=lf

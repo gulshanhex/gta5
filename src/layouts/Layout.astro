@@ -1,0 +1,24 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = "GTA V: Los Santos 3D Web Edition — Astro + Cloudflare Workers" } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>{title}</title>
+  <meta name="description" content="Full 3D Open-World GTA 5 Web Game built with Astro & Three.js for Cloudflare Workers (Zero D1/R2, pure .glb 3D assets in public/)." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Teko:wght@600;700&display=swap" rel="stylesheet" />
+  <script is:inline src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="bg-slate-950 text-white overflow-hidden select-none m-0 p-0 font-['Inter',sans-serif]">
+  <slot />
+</body>
+</html>
